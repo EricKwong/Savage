@@ -14,6 +14,7 @@ var {
 
 var MainMenuView = React.createClass({
   render: function() {
+    
     console.log('rendered')
     return (
     <View style={styles.container}>
