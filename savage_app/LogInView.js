@@ -21,7 +21,7 @@ var LogInView = React.createClass({
           <Text style={styles.title}> SAVAGE </Text>
           <TextInput style={styles.input} placeholder='Username'/>
           <TextInput style={styles.input} placeholder='Password'/>
-          <TouchableHighlight onPress={this.logInPressed.bind(this)} style={styles.loginButton}
+          <TouchableHighlight onPress={this.logInPressed} style={styles.loginButton}
           underlayColor='rgb(0,235,76)'>
             <Text style={styles.buttonText}>Log In</Text>
           </TouchableHighlight>
@@ -35,8 +35,7 @@ var LogInView = React.createClass({
   },
 
   logInPressed: function() {
-    // debugger;
-    this.props.navigator.replace({
+    this.props.navigator.push({
       title: 'Main Menu',
       component: MainMenuView
     }); 

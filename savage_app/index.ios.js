@@ -22,7 +22,8 @@ var savage_app = React.createClass({
         initialRoute={{
           title: 'Log In',
           component: LogInView
-        }}/>
+        }} 
+        navigationBarHidden='true'/>
     );
   }
 });
