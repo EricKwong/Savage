@@ -1,4 +1,4 @@
-class MonstersController < ApplicationController
+  class MonstersController < ApplicationController
 
   def index
     render json: Monster.all
