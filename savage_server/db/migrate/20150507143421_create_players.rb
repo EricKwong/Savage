@@ -6,6 +6,7 @@ class CreatePlayers < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.integer :level
+      t.integer :max_health
       t.integer :hp
       t.integer :attack
       t.integer :defense

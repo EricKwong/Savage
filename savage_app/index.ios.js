@@ -6,6 +6,7 @@
 
 var React = require('react-native');
 var LogInView = require('./LogInView');
+var MainMenuView = require('./MainMenuView');
 
 var {
   AppRegistry,
@@ -17,14 +18,29 @@ var {
 
 var savage_app = React.createClass({
   render: function() {
-    return (
-      <NavigatorIOS style={styles.container}
-        initialRoute={{
-          title: 'Log In',
-          component: LogInView
-        }} 
-        navigationBarHidden='true'/>
-    );
+    // fetch('/sessions')
+    //   .then(function(session) {
+    //     if (session.current_user) {
+    //       return (
+    //         <NavigatorIOS style={styles.container}
+    //           initialRoute={{
+    //             title: 'Main Menu',
+    //             component: MainMenuView
+    //           }}
+    //           navigationBarHidden='true'/>
+    //       )
+    //     } else {
+          return (
+            <NavigatorIOS style={styles.container}
+              initialRoute={{
+                title: 'Log In',
+                component: LogInView
+              }} 
+              navigationBarHidden='true'/>
+          );
+      //   }
+      // });
+
   }
 });
 
