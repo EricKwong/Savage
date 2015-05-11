@@ -14,13 +14,27 @@ var {
 } = React;
 
 var LogInView = React.createClass({
+  getInitialState: function() {
+    return {
+      username: null,
+      password: null
+    }
+  },
+  usernameTextChange: function(event) {
+    this.setState({username: event.nativeEvent.text});
+    console.log(this.state.username)
+  },
+  passwordTextChange: function(event) {
+    this.setState({password: event.nativeEvent.text});
+    console.log(this.state.password)
+  },
   render: function() {
     return (
       <View style={styles.container}>
         <View style={styles.form}>
           <Text style={styles.title}> SAVAGE </Text>
-          <TextInput style={styles.input} placeholder='Username'/>
-          <TextInput style={styles.input} placeholder='Password'/>
+          <TextInput style={styles.input} onChange={this.usernameTextChange} placeholder='Username'/>
+          <TextInput secureTextEntry={true} style={styles.input} onChange={this.passwordTextChange} placeholder='Password'/>
           <TouchableHighlight onPress={this.logInPressed} style={styles.loginButton}
           underlayColor='rgb(0,235,76)'>
             <Text style={styles.buttonText}>Log In</Text>
@@ -34,11 +48,28 @@ var LogInView = React.createClass({
     )
   },
 
+  loginQuery: function() {
+    return 'username=' + this.state.username +
+      '&password=' + this.state.password;
+  },
+
   logInPressed: function() {
-    this.props.navigator.push({
-      title: 'Main Menu',
-      component: MainMenuView
-    }); 
+    var self = this;
+    fetch('http://localhost:3000/sessions', {
+      method: 'POST',
+      body: this.loginQuery()
+    }).then(function(response) {
+      response.json().then(function(json) {
+        console.log(json);
+        if (response.status.toString().substr(0,1) === "2") {
+          self.props.navigator.replace({
+            title: 'Main Menu',
+            component: MainMenuView,
+            passProps: json
+          });  
+        }
+      });
+    });   
   }
 });
 
@@ -46,7 +77,7 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: 'beige'
+    backgroundColor: 'ivory'
   },
   title: {
     fontSize: 80,
