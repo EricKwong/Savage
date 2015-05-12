@@ -17,6 +17,7 @@ Player.create!({
   gold: 15000,
   steps: 1000
 })
+
 Player.create!({
   username: 'mck',
   password_digest: 'mck',
@@ -34,27 +35,27 @@ Player.create!({
 
 4.times do
   Monster.create!({
-    name: 'Booboo',
+    name: 'Shroom',
     attack: 15,
     defense: 17,
     hp: 150,
     rarity: 4,
     exp: 100,
-    bounty: 180
+    bounty: 180,
+    avatar: 'http://fc08.deviantart.net/fs71/f/2011/043/f/c/cc__mushroom_monster_by_violetmoonshade-d39e6w4.gif'
   })
 end
 
-Encounter.create!({
-  player_id: 7,
-  monster_id: 25
-})
+3.times do
+  Encounter.create!({
+    player_id: 1,
+    monster_id: 3
+  })
+end
 
-Encounter.create!({
-  player_id: 7,
-  monster_id: 26
-}) 
-
-Encounter.create({
-  player_id: 8,
-  monster_id: 27
-})
+2.times do
+  Encounter.create!({
+    player_id: 2,
+    monster_id: 2
+  }) 
+end

@@ -8,6 +8,7 @@ class CreateMonsters < ActiveRecord::Migration
       t.integer :rarity
       t.integer :bounty
       t.integer :exp
+      t.string :avatar
 
       t.timestamps
     end

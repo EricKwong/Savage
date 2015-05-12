@@ -9,7 +9,10 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.new(player_params)
+    # @player.save
+    binding.pry
     if @player.save
+      render json: @player
       # if player saves send back good response, else bad response
       # if response is good it will login and trigger main view in app
     end
@@ -17,7 +20,7 @@ class PlayersController < ApplicationController
 
   def update
     @player = Player.find(params[:id])
-    player.update(person_params)
+    @player.update(person_params)
     render json: @player
   end
 
@@ -29,11 +32,15 @@ class PlayersController < ApplicationController
     end
   end
 
+  def monsters
+    @player = Player.find(params[:id])
+    render json: @player.monsters
+  end
+
   private
 
   def player_params
-    params.require(:player).permit(:username, :password, :password_confirmation,
-      :first_name, :last_name)
+    params.permit(:first_name, :last_name, :username, :password, :password_confirmation)
   end
 
 end

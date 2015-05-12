@@ -17,10 +17,14 @@ ActiveRecord::Schema.define(version: 20150510170842) do
   enable_extension "plpgsql"
 
   create_table "encounters", force: :cascade do |t|
-    t.integer "player_id"
-    t.integer "monster_id"
-    t.integer "encounters", default: 0
+    t.integer  "player_id"
+    t.integer  "monster_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "encounters", ["monster_id"], name: "index_encounters_on_monster_id", using: :btree
+  add_index "encounters", ["player_id"], name: "index_encounters_on_player_id", using: :btree
 
   create_table "monsters", force: :cascade do |t|
     t.string   "name"
@@ -30,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150510170842) do
     t.integer  "rarity"
     t.integer  "bounty"
     t.integer  "exp"
+    t.string   "avatar"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
