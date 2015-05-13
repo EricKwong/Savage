@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var MainMenuView = require('./MainMenuView');
+var CreateView = require('./CreateView');
 
 var {
   StyleSheet,
@@ -17,7 +18,7 @@ var LogInView = React.createClass({
   getInitialState: function() {
     return {
       username: null,
-      password: null
+      password: null,
     }
   },
   usernameTextChange: function(event) {
@@ -39,7 +40,7 @@ var LogInView = React.createClass({
           underlayColor='rgb(0,235,76)'>
             <Text style={styles.buttonText}>Log In</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.createAccountButton}
+          <TouchableHighlight onPress={this.createPressed} style={styles.createAccountButton}
           underlayColor='rgb(255,70,71)'>
             <Text style={styles.buttonText}>Create Account</Text>
           </TouchableHighlight>
@@ -60,24 +61,32 @@ var LogInView = React.createClass({
       body: this.loginQuery()
     }).then(function(response) {
       response.json().then(function(json) {
-        console.log(json);
+        json.currentLon = null;
+        json.currentLat = null;
         if (response.status.toString().substr(0,1) === "2") {
           self.props.navigator.replace({
             title: 'Main Menu',
             component: MainMenuView,
             passProps: json
-          });  
+          }); 
         }
       });
     });   
-  }
+  },
+
+  createPressed: function() {
+    this.props.navigator.push({
+      title: 'Create',
+      component: CreateView
+    })
+  },
 });
 
 var styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: 'ivory'
+    backgroundColor: 'ivory',
   },
   title: {
     fontSize: 80,

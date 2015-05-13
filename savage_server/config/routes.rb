@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   post 'sessions' => 'sessions#create'
   delete 'sessions' => 'sessions#destroy'
 
+  put 'players/:id/:hp' => 'players#hp_update'
+  put 'players/:id/:hp/:exp/:gold' => 'players#hp_gold_exp_update'
+
 end

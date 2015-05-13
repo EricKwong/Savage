@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(version: 20150510170842) do
     t.string   "password_digest"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "level"
-    t.integer  "max_health"
-    t.integer  "hp"
-    t.integer  "attack"
-    t.integer  "defense"
-    t.integer  "exp"
-    t.integer  "gold"
-    t.integer  "steps"
+    t.integer  "level",           default: 1
+    t.integer  "max_health",      default: 100
+    t.integer  "hp",              default: 100
+    t.integer  "attack",          default: 10
+    t.integer  "defense",         default: 8
+    t.integer  "exp",             default: 0
+    t.integer  "gold",            default: 1000
+    t.integer  "steps",           default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

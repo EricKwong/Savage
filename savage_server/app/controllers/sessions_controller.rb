@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
     player = Player.find_by(username: username)
 
-    if player 
+    if player && player.authenticate(password)
       session[:current_user] = player.id
       render json: player
     else

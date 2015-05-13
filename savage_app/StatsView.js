@@ -19,9 +19,11 @@ var StatsView = React.createClass({
         <View style={styles.back}>
           <TouchableHighlight onPress={this.goBack} style={styles.backButton}
             underlayColor='rgb(255,120,0)'>
-            <Text style={styles.backText}> Back </Text>
+            <Text style={styles.backText}>&#60;</Text>
           </TouchableHighlight>
+          <Text style={styles.title}>Stats</Text>
         </View>
+        <View style={styles.seperator}/>
         <View style={styles.info}>
           <View>
             <Image source={require('image!mario')} style={styles.image}/>
@@ -41,7 +43,7 @@ var StatsView = React.createClass({
             </Text>
           </View>
         </View>
-        <View>
+        <View style={styles.statsDetails}>
           <Text style={styles.stats}>
             GOLD: {this.props.gold}
           </Text>
@@ -67,11 +69,18 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'ivory',
-    padding: 30
+  },
+  title: {
+    fontSize: 28,
+    alignSelf: 'center',
+    marginLeft: 90,
   },
   info: {
     flexDirection: 'row',
-    marginBottom: 40
+    padding: 30
+  },
+  statsDetails: {
+    marginLeft: 30
   },
   username: {
     fontSize: 30,
@@ -99,21 +108,29 @@ var styles = StyleSheet.create({
     marginBottom: 10
   },
   back:{
-    right: 15,
-    marginBottom: 10
+    marginTop: 30,
+    marginBottom: 5,
+    flexDirection: 'row'
   },
   backText:{
-    fontSize: 16,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'snow',
     flex: 1,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   backButton: {
-    height: 35,
-    width: 60,
-    borderRadius: 15,
-    padding: 7,
+    height: 30,
+    width: 45,
+    borderRadius: 12,
+    padding: 2,
+    margin: 10,
     backgroundColor: 'rgb(255,150,0)'
-  }
+  },
+  seperator: {
+    height: 1,
+    backgroundColor: '#dddddd'
+  },
 });
 
 module.exports = StatsView;
